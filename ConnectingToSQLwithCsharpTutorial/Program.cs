@@ -8,13 +8,20 @@ connection.connect();
 
 UsersController userCtrl = new(connection);
 
+User? xx1user = userCtrl.GetByPk(3);
+xx1user.Username = "yy";
+xx1user.Password = "yy";
+xx1user.Firstname = "yy";
+xx1user.Lastname = "yy";
+bool updated = userCtrl.Update(xx1user);
+
 User newUser = new()
-{Username = "xx", Password = "xxxx", Firstname = "asd", Lastname = "lsdf", Phone = 922019401234, 
+{Username = "xwx", Password = "xxxx", Firstname = "asd", Lastname = "lsdf", Phone = 922019401234, 
     Email = "323@outlook.com", IsReviewer = true, IsAdmin = false };
 
-bool ok = userCtrl.Insert(newUser);
+//bool ok = userCtrl.Insert(newUser);
 
-bool success = userCtrl.Delete(2);
+//bool success = userCtrl.Delete(2);
 
 
 User? user = userCtrl.GetByPk(1);

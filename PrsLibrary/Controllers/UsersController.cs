@@ -118,8 +118,17 @@ namespace PrsLibrary.Controllers
         public bool Insert(User user)
         {
             string sql = " INSERT into users " + " ( Username,Password,Firstname,Lastname,Phone,Email,IsReviewer,IsAdmin) " + " VALUES " +
-                $"('{user.Username}', '{user.Password}', '{user.Firstname}', '{user.Lastname}','{user.Phone}','{user.Email}','{(user.IsReviewer ? 1 : 0)}','{(user.IsAdmin ? 1 : 0)}' );";
+                "( @Username, @Password,@Firstname, @Lastname, "
+                + " @Phone,@Email,@IsReviewer,@IsAdmin );";
             SqlCommand cmd = new(sql, connection.sqlconnection);
+            cmd.Parameters.AddWithValue("@Username", user.Username);
+            cmd.Parameters.AddWithValue("@Password", user.Password);
+            cmd.Parameters.AddWithValue("@Firstname", user.Firstname);
+            cmd.Parameters.AddWithValue("@Lastname", user.Lastname);
+            cmd.Parameters.AddWithValue("@Phone", user.Phone);
+            cmd.Parameters.AddWithValue("@Email", user.Email);
+            cmd.Parameters.AddWithValue("@IsReviewer", user.IsReviewer);
+            cmd.Parameters.AddWithValue("@IsAdmin", user.IsAdmin);
             int rowsAffected = cmd.ExecuteNonQuery();
             if (rowsAffected != 1)
             {
@@ -128,6 +137,38 @@ namespace PrsLibrary.Controllers
             return true;
         
         }
+        public bool Update(User user)
+        {
+            string sql = " UPDATE users SET " +
+                "Username = @Username, " +
+                "Password = @Password, " +
+                "Firstname = @Firstname, " +
+                "Lastname = @Lastname, " +
+                "Phone = @Phone, " +
+                "Email = @Email, " +
+                "IsReviewer = @IsReviewer, " +
+                "IsAdmin = @IsAdmin " +
+                " Where Id = @Id;";
+
+            SqlCommand cmd = new(sql, connection.sqlconnection);
+            cmd.Parameters.AddWithValue("@Username", user.Username);
+            cmd.Parameters.AddWithValue("@Password", user.Password);
+            cmd.Parameters.AddWithValue("@Firstname", user.Firstname);
+            cmd.Parameters.AddWithValue("@Lastname", user.Lastname);
+            cmd.Parameters.AddWithValue("@Phone", user.Phone);
+            cmd.Parameters.AddWithValue("@Email", user.Email);
+            cmd.Parameters.AddWithValue("@IsReviewer", user.IsReviewer);
+            cmd.Parameters.AddWithValue("@IsAdmin", user.IsAdmin);
+            cmd.Parameters.AddWithValue("@Id", user.ID);
+            int rowsAffected = cmd.ExecuteNonQuery();
+            if (rowsAffected != 1)
+            {
+                return false;
+            }
+            return true;
+        
+        }
+      
     }
 
 }
