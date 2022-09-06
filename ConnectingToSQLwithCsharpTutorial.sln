@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32819.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConnectingToSQLwithCsharpTutorial", "ConnectingToSQLwithCsharpTutorial\ConnectingToSQLwithCsharpTutorial.csproj", "{B4586F55-52C4-4045-89FC-9154864BE361}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrsLibrary", "PrsLibrary\PrsLibrary.csproj", "{A05457B6-1C1F-4822-BBE1-420BDC4914D4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B4586F55-52C4-4045-89FC-9154864BE361}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4586F55-52C4-4045-89FC-9154864BE361}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4586F55-52C4-4045-89FC-9154864BE361}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4586F55-52C4-4045-89FC-9154864BE361}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A05457B6-1C1F-4822-BBE1-420BDC4914D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A05457B6-1C1F-4822-BBE1-420BDC4914D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A05457B6-1C1F-4822-BBE1-420BDC4914D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A05457B6-1C1F-4822-BBE1-420BDC4914D4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A4EDF50C-8248-488F-A789-7D9635DC565C}
+	EndGlobalSection
+EndGlobal
