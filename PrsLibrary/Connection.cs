@@ -8,18 +8,18 @@ namespace PrsLibrary
                                 "database =Exercise;trusted_connection=true;" +             //You can have spaces around the equal signs
                                 "trustServerCertificate=true;";                 //This last one may not be needed, new in windows 11
 
-        public Microsoft.Data.SqlClient.SqlConnection? connection { get; set; }      //got the microsoft data stuff from NuGet from tools
+        public Microsoft.Data.SqlClient.SqlConnection? sqlconnection { get; set; }      //got the microsoft data stuff from NuGet from tools
 
         public void connect()
         {
-            if(connection is not null)
+            if(sqlconnection is not null)
             {
                 System.Diagnostics.Debug.WriteLine("Connection already established");
                 return;
             }
-            connection = new SqlConnection(connectionString);
-            connection.Open();                                                      //Have to declare it open. It attempts to connect to the database
-            if(connection.State != System.Data.ConnectionState.Open)
+            sqlconnection = new SqlConnection(connectionString);
+            sqlconnection.Open();                                                      //Have to declare it open. It attempts to connect to the database
+            if(sqlconnection.State != System.Data.ConnectionState.Open)
             {
                 throw new Exception("Could not make connection to database!");
             }
@@ -29,7 +29,7 @@ namespace PrsLibrary
         public void SelectSql(string sql)             //Using this one whenever we use a select statement in sql
         {
             sql = "SELECT * from Users;";
-            SqlCommand sqlCommand = new(sql, connection);           //connection is the open connection in our library 
+            SqlCommand sqlCommand = new(sql, sqlconnection);           //connection is the open connection in our library 
             SqlDataReader reader = sqlCommand.ExecuteReader();                         //Function of sql command that does a read statement
             while (reader.Read())                                      //True if there is data to read, false if there is no more data to read from
             {
@@ -44,11 +44,13 @@ namespace PrsLibrary
 
         public void disconnect()
         {
-            if(connection is not null)          //Is not is more descriptive than !=, do is not null when you can
+            if(sqlconnection is not null)          //Is not is more descriptive than !=, do is not null when you can
             {
-                connection.Close();
-                connection = null;
+                sqlconnection.Close();
+                sqlconnection = null;
             }
         }
+
+        
     }
 }
