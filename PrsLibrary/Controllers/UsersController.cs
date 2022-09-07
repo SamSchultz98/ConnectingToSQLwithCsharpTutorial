@@ -168,7 +168,38 @@ namespace PrsLibrary.Controllers
             return true;
         
         }
-      
+
+        public User? Login(string Username, string Password)
+        {
+            string sql = "Select * from Users where Username = @Username and Password = @Password; ";
+            SqlCommand cmd = new(sql, connection.sqlconnection);
+            cmd.Parameters.AddWithValue("@Username", Username);
+            cmd.Parameters.AddWithValue("@Password", Password);
+            SqlDataReader reader = cmd.ExecuteReader();
+            if (!reader.HasRows)
+            {
+                reader.Close();
+                return null;
+            }
+            reader.Read();
+            User user = new User();
+            user.ID = Convert.ToInt32(reader["Id"]);
+            user.Username = Convert.ToString(reader["Username"])!;
+            user.Password = Convert.ToString(reader["Password"])!;
+            user.Firstname = Convert.ToString(reader["Firstname"])!;
+            user.Lastname = Convert.ToString(reader["Lastname"])!;
+            if (reader["Phone"] == System.DBNull.Value)
+            {
+                user.Phone = null;
+            }
+            user.Phone = Convert.ToInt64(reader["Phone"]);
+            user.Email = (reader["Email"] == System.DBNull.Value) ? null : Convert.ToString(reader["Email"]);       //Same thing as above, just quickhand
+            user.IsReviewer = Convert.ToBoolean(reader["IsReviewer"]);
+            user.IsAdmin = Convert.ToBoolean(reader["IsAdmin"]);
+            reader.Close();
+            return user;
+        }
+
     }
 
 }

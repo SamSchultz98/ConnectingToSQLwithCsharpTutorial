@@ -15,7 +15,7 @@ namespace PrsLibrary.Controllers
         //readonly allows this variable to not be changed
         //Read only: You can initilize in a constructor but you can not anywhere else
         public ProductsController(Connection conn)
-        {
+        {   
             connection = conn;
             vendCtrl = new(connection);
         }
@@ -54,6 +54,7 @@ namespace PrsLibrary.Controllers
             Product product = new();
             Product.LoadFromReader(product, reader);
             reader.Close();
+            product.Vendor = vendCtrl.GetByPk(product.VendorsId);
             return product;
 
 

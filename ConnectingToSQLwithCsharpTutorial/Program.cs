@@ -6,12 +6,12 @@ Connection connection = new();
 
 connection.connect();
 
-ProductsController prodCtrl = new(connection);
+UsersController userCtrl = new(connection);
 
-IEnumerable<Product> products = prodCtrl.GetAll();
-foreach(Product p in products)
+User? u = userCtrl.Login("yy", "yy");
+if (u is not null)
 {
-    Console.WriteLine($"{p.PartNbr} | {p.Name} | {p.Price:C} | {p.Vendor}");
+    Console.WriteLine($" {u.ID} | {u.Username} | {u.Firstname} | {u.Lastname} ");
 }
 
 

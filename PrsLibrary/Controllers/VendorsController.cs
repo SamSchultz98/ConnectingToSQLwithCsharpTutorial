@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using PrsLibrary.Models;
+using PrsLibrary.Controllers;
 
 
 namespace PrsLibrary.Controllers
@@ -12,6 +13,7 @@ namespace PrsLibrary.Controllers
     public class VendorsController
     {
         public Connection connection = null;
+     
         
         public VendorsController(Connection conn)
         {
